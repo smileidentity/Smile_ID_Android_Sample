@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--ID Card Preview Layout-->
+
+    <LinearLayout
+        android:id="@+id/idCardPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!--Text view to display message for confirming visibility -->
+
+        <!--ID Card Preview with buttons Layout-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Card Image Preview-->
+            <ImageView
+                android:id="@+id/imageView_idcard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp" />
+
+            <!--No Button-->
+            <TextView
+                android:id="@+id/viewNo"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="start"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="NO"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="22sp"
+                android:weightSum="1" />
+
+            <!--Yes Button-->
+            <TextView
+                android:id="@+id/viewYes"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="start"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="YES"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="22sp"
+                android:weightSum="1" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--Preview Layout with Overlays for Prompts and Rectangle-->
+    <FrameLayout
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--Camera preview-->
+
+        <!--Rectangle Overlay custom view created as a guide for ID capture-->
+        <SurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--Rectangle Overlay-->
+        <com.smileidentity.libsmileid.utils.CaptureIDCardOverlay
+            android:id="@+id/rectangleOverlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/capture_info_tv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="BACK" />
+
+    <TextView
+        android:id="@+id/read_prompt_tv"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:text="Can you read the complete ID ?"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/capture_info_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/place_id_in_rectangle"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</RelativeLayout>
