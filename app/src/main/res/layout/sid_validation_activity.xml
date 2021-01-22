@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_id_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!--android:background="@drawable/rounded_corner_transparent"-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Country" />
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/dialog_country_code_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccpDialog_textColor="@android:color/white"
+            app:ccp_customMasterCountries="GH,NG,KE,TZ"
+            app:ccp_defaultPhoneCode="234"
+            app:ccp_showFullName="true"
+            app:ccp_showNameCode="false"
+            app:ccp_showPhoneCode="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type of Identification" />
+
+        <Spinner
+            android:id="@+id/id_type_spin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="Select Id Type"
+            android:inputType="textPersonName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_id_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_middle_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Middle Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_d_o_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date Of Birth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ti_et_d_o_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="SUCCESS!"
+            android:textColor="@color/colorBlue"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tv_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_success"
+            android:gravity="center"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tv_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_actions"
+            android:gravity="center"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tv_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_full_name"
+            android:gravity="center"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/iv_id_photo"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/tv_gender"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop" />
+
+        <Button
+            android:id="@+id/btnRestart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_id_photo"
+            android:layout_margin="16dp"
+            android:background="@color/colorBlue"
+            android:text="Restart"
+            android:textColor="@color/white_color" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/loading_prog"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/sid_enroll_upload_now_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:background="@color/colorBlue"
+        android:text="Upload"
+        android:textColor="@color/white_color" />
+
+</RelativeLayout>
