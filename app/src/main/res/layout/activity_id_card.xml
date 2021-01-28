@@ -4,10 +4,17 @@
     android:layout_height="match_parent">
 
     <com.smileidentity.libsmileid.core.SmartCardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/id_capture"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </com.smileidentity.libsmileid.core.SmartCardView>
+        android:layout_height="match_parent"
+        app:blurryMessage="Custom message for when capture is blurry"
+        app:detectingFaceMessage="Custom message for when ID capture face detection is in progress"
+        app:faceDetectedMessage="Custom face detected message"
+        app:fitIdMessage="Custom message informing the user to fit the id on the rectangle and tap for focus"
+        app:flashMissingErrorMessage="Custom flash missing error message"
+        app:insufficientLightMessage="Custom message for when there is insufficient light"
+        app:loadingMessage="Custom message for when ID capture is loading"
+        app:noFaceDetectedMessage="Custom no face detected message"/>
 
 </LinearLayout>

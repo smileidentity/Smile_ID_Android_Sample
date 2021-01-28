@@ -40,4 +40,13 @@
     <string name="skip_id_info">Skip Id Info</string>
     <string name="step_set_id_info">Set ID Info</string>
     <string name="job_status">Job Status</string>
+
+    <string name="faceDetectedMessage">Custom  face detected message</string>
+    <string name="flashMissingErrorMessage">Custom no flash message</string>
+    <string name="noFaceDetectedMessage">Custom no face detected message</string>
+    <string name="fitIdMessage">Custom fit id message</string>
+    <string name="blurryMessage">Custom blurry message</string>
+    <string name="tooFarMessage">Custom too far message</string>
+    <string name="loadingMessage">Custom loading message</string>
+    <string name="detectingFaceMessage">Custom detecting message</string>
 </resources>

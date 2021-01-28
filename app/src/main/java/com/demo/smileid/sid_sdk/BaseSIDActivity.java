@@ -16,12 +16,11 @@ public class BaseSIDActivity extends AppCompatActivity {
     private static final int PERMISSION_ALL = 1;
 
     protected String[] PERMISSIONS = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            Manifest.permission.READ_PHONE_STATE};
 
     protected void startSelfieCapture(boolean isEnrollMode, boolean hasId, boolean use258, boolean reenroll, boolean hasNoIdCard) {
         Intent intent = new Intent(this, SIDSelfieActivity.class);
