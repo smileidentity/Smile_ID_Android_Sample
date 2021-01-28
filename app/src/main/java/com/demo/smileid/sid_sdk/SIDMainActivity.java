@@ -37,6 +37,7 @@ public class SIDMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     private boolean playServiceAvailable() {
