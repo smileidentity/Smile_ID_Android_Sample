@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ccpDialog_textColor="@android:color/white"
-            app:ccp_customMasterCountries="GH,NG,KE,TZ"
+            app:ccp_customMasterCountries="GH,NG,KE,TZ,ZA"
             app:ccp_defaultPhoneCode="234"
             app:ccp_showFullName="true"
             app:ccp_showNameCode="false"

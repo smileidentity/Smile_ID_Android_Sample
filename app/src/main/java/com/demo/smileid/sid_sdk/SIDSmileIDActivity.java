@@ -36,7 +36,6 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         SIDNetworkRequest.OnEnrolledListener,
         InternetStateBroadCastReceiver.OnConnectionReceivedListener {
 
-
     Button mEnrollBtn;
     Button mEnrollBtnNoIDCard;
     Button mAuthBtn;
@@ -57,6 +56,7 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sid_smile_id_layout);
+
         mEnrollBtn = findViewById(R.id.enroll_btn);
         mEnrollBtnNoIDCard = findViewById(R.id.enroll_no_card_btn);
         mAuthBtn = findViewById(R.id.auth_btn);
@@ -71,7 +71,6 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         mUpdateEnrolledImage = findViewById(R.id.update_enroll_image);
         mIDValidation = findViewById(R.id.iv_validation);
         mJobStatus = findViewById(R.id.job_status);
-
 
         mUpdateEnrolledImage.setOnClickListener(this);
         mEnrollBtn.setOnClickListener(this);
