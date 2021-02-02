@@ -48,18 +48,18 @@ import java.util.concurrent.TimeUnit;
 
 public class SIDIDValidationActivity extends AppCompatActivity implements View.OnClickListener, SIDNetworkRequest.OnCompleteListener, SIDNetworkRequest.OnIDValidationListener, SIDNetworkRequest.OnErrorListener {
 
-    private TextView tvActions, tvFullName, tvGender;
-    private ImageView ivPhoto;
+    private TextView mTvActions, mTvFullName, mTvGender;
+    private ImageView mIvPhoto;
     private LinearLayout layout_id_info;
     private RelativeLayout result_layout;
     private ProgressBar progressBar;
-    private Spinner sIdType;
+    private Spinner mSpIdType;
     private TextInputLayout tiIdNumber, tiFirstName, tiLastName, tiDOB, tiMiddleName;
     private String mSelectedCountryName = "", mSelectedIdCard;
     private CountryCodePicker ccp;
     private Button mUploadNowBtn;
     private String mCurrentTag;
-    private SIDNetworkRequest mSINetworkrequest;
+    private SIDNetworkRequest mSINetworkRequest;
     private SIDConfig mConfig;
     private Button btnRestart;
 
@@ -67,10 +67,10 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sid_validation_activity);
-        tvActions = findViewById(R.id.tv_actions);
-        tvFullName = findViewById(R.id.tv_full_name);
-        tvGender = findViewById(R.id.tv_gender);
-        ivPhoto = findViewById(R.id.iv_id_photo);
+        mTvActions = findViewById(R.id.tv_actions);
+        mTvFullName = findViewById(R.id.tv_full_name);
+        mTvGender = findViewById(R.id.tv_gender);
+        mIvPhoto = findViewById(R.id.iv_id_photo);
         layout_id_info = findViewById(R.id.layout_id_info);
         result_layout = findViewById(R.id.result_layout);
         progressBar = findViewById(R.id.loading_prog);
@@ -78,8 +78,8 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
         btnRestart.setOnClickListener(this);
 
 
-        sIdType = findViewById(R.id.id_type_spin);
-        sIdType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSpIdType = findViewById(R.id.id_type_spin);
+        mSpIdType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedIdCard = parent.getItemAtPosition(position).toString();
@@ -113,11 +113,11 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
         mUploadNowBtn = findViewById(R.id.sid_enroll_upload_now_btn);
         mUploadNowBtn.setOnClickListener(this);
 
-        mSINetworkrequest = new SIDNetworkRequest(this);
-        mSINetworkrequest.setOnCompleteListener(this);
-        mSINetworkrequest.setOnIDValidationListener(this);
-        mSINetworkrequest.set0nErrorListener(this);
-        mSINetworkrequest.initialize();
+        mSINetworkRequest = new SIDNetworkRequest(this);
+        mSINetworkRequest.setOnCompleteListener(this);
+        mSINetworkRequest.setOnIDValidationListener(this);
+        mSINetworkRequest.set0nErrorListener(this);
+        mSINetworkRequest.initialize();
 
         getTag();
 
@@ -181,7 +181,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
     private void initSpinner(List<String> idTypes) {
         ArrayAdapter dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, idTypes);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sIdType.setAdapter(dataAdapter);
+        mSpIdType.setAdapter(dataAdapter);
     }
 
     private void populateIdCard() {
@@ -239,7 +239,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
             layout_id_info.setVisibility(View.GONE);
             mUploadNowBtn.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
-            mSINetworkrequest.submit(sidConfig);
+            mSINetworkRequest.submit(sidConfig);
         } else {
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
         }
@@ -299,7 +299,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
             } else {
                 actions.append("NOT AVAILABLE").append(System.getProperty("line.separator"));
             }
-            tvActions.setText(actions);
+            mTvActions.setText(actions);
 
             StringBuilder fullName = new StringBuilder("FULL NAME : ").append(System.getProperty("line.separator"));
             if (!TextUtils.isEmpty(result.getFullName())) {
@@ -307,7 +307,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
             } else {
                 fullName.append("NOT AVAILABLE");
             }
-            tvFullName.setText(fullName);
+            mTvFullName.setText(fullName);
 
             StringBuilder gender = new StringBuilder("GENDER : ").append(System.getProperty("line.separator"));
             if (!TextUtils.isEmpty(result.getGender())) {
@@ -316,16 +316,16 @@ public class SIDIDValidationActivity extends AppCompatActivity implements View.O
                 gender.append("NOT AVAILABLE");
             }
 
-            tvGender.setText(gender);
+            mTvGender.setText(gender);
 
 
             if (!TextUtils.isEmpty(result.getPhoto())) {
                 byte[] decodedString = Base64.decode(result.getPhoto(), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                ivPhoto.setImageBitmap(decodedByte);
+                mIvPhoto.setImageBitmap(decodedByte);
             } else {
                 gender.append(" PHOTO NOT AVAILABLE");
-                tvGender.setText(gender);
+                mTvGender.setText(gender);
             }
         }
 

@@ -1,1 +1,3 @@
-include ':app',':ccp'
+include ':app', /*':smile_detect_library-release',*/ ':ccp'
+
+//project(':smile_detect_library-release').projectDir = new File('../android_lib')
