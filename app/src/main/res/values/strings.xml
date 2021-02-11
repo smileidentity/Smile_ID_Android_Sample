@@ -49,4 +49,6 @@
     <string name="tooFarMessage">Custom too far message</string>
     <string name="loadingMessage">Custom loading message</string>
     <string name="detectingFaceMessage">Custom detecting message</string>
+    <string name="enroll_id_card_smile_ui">Smile UI Demo Enroll ID Card</string>
+    <string name="enroll_smile_ui">Smile UI Enroll</string>
 </resources>

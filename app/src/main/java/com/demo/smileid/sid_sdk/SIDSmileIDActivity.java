@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.demo.smileid.sid_sdk.sidNet.InternetStateBroadCastReceiver;
 import com.demo.smileid.sid_sdk.sidNet.SIDNetworkingUtils;
+import com.smileid.smileidui.CaptureType;
+import com.smileid.smileidui.SIDCaptureManager;
 import com.smileidentity.libsmileid.core.RetryOnFailurePolicy;
 import com.smileidentity.libsmileid.core.SIDConfig;
 import com.smileidentity.libsmileid.core.SIDNetworkRequest;
@@ -28,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.EXTRA_TAG_PREFERENCES_AUTH_TAGS;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_JOB_ID;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_USER_ID;
+import static com.smileid.smileidui.IntentHelper.SMILE_REQUEST_RESULT_TAG;
 
 public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickListener,
         SIDNetworkRequest.OnCompleteListener,
@@ -36,7 +40,11 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         SIDNetworkRequest.OnEnrolledListener,
         InternetStateBroadCastReceiver.OnConnectionReceivedListener {
 
+    private static final int SMILE_ID_CARD_REQUEST_CODE = 777;
+    private static final int SMILE_SELFIE_REQUEST_CODE = 778;
 
+    Button mIDCardEnrollSmileUI;
+    Button mSelfieEnrollSmileUI;
     Button mEnrollBtn;
     Button mEnrollBtnNoIDCard;
     Button mAuthBtn;
@@ -71,6 +79,8 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         mUpdateEnrolledImage = findViewById(R.id.update_enroll_image);
         mIDValidation = findViewById(R.id.iv_validation);
         mJobStatus = findViewById(R.id.job_status);
+        mIDCardEnrollSmileUI = findViewById(R.id.enroll_id_card_smile_ui);
+        mSelfieEnrollSmileUI = findViewById(R.id.enroll_smile_ui);
 
 
         mUpdateEnrolledImage.setOnClickListener(this);
@@ -87,6 +97,8 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         mMultipleEnroll.setOnClickListener(this);
         mIDValidation.setOnClickListener(this);
         mJobStatus.setOnClickListener(this);
+        mIDCardEnrollSmileUI.setOnClickListener(this);
+        mSelfieEnrollSmileUI.setOnClickListener(this);
 
         mSINetworkrequest = new SIDNetworkRequest(this);
         mSINetworkrequest.setOnCompleteListener(this);
@@ -165,7 +177,15 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
             case R.id.job_status:
                 getLastJobStatus();
                 break;
+            case R.id.enroll_id_card_smile_ui:
+                new SIDCaptureManager.Builder(this, CaptureType.SELFIE_AND_ID_CAPTURE, SMILE_ID_CARD_REQUEST_CODE).build().start();
+                break;
+            case R.id.enroll_smile_ui:
+                new SIDCaptureManager.Builder(this, CaptureType.SELFIE, SMILE_SELFIE_REQUEST_CODE).build().start();
+                break;
         }
+
+
     }
 
     private void showOfflineAuthDialog() {
@@ -255,7 +275,7 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
         retryOnFailurePolicy.setRetryCount(10);
         retryOnFailurePolicy.setRetryTimeout(TimeUnit.SECONDS.toMillis(15));
 
-        SIDNetData data = new SIDNetData(this,SIDNetData.Environment.TEST);
+        SIDNetData data = new SIDNetData(this, SIDNetData.Environment.TEST);
         SIDConfig.Builder builder = new SIDConfig.Builder(this)
                 .setRetryOnfailurePolicy(retryOnFailurePolicy)
                 .setMode(SIDConfig.Mode.ENROLL)
@@ -309,5 +329,29 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
     @Override
     public void onEnrolled(SIDResponse response) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SMILE_SELFIE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent(this, SIDEnrollResultActivity.class);
+                intent.putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 4);
+                intent.putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Oops Smile ID UI Selfie did not return a success", Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == SMILE_ID_CARD_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent(this, SIDEnrollResultActivity.class);
+                intent.putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 1);
+                intent.putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Oops Smile ID UI Selfie and ID Card did not return a success", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
