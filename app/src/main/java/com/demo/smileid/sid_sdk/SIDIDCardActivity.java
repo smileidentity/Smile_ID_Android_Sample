@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.smileidentity.libsmileid.core.SmartCardView;
 import com.smileidentity.libsmileid.core.captureCallback.IDCardState;
+import com.smileidentity.libsmileid.exception.SIDException;
 
 
 public class SIDIDCardActivity extends AppCompatActivity implements SmartCardView.SmartCardViewCallBack {
@@ -34,7 +35,11 @@ public class SIDIDCardActivity extends AppCompatActivity implements SmartCardVie
     @Override
     protected void onResume() {
         super.onResume();
-        mSmartCardView.startCapture(mCurrentTag);
+        try {
+            mSmartCardView.startCapture(mCurrentTag);
+        } catch (SIDException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setFullScreen() {
