@@ -23,13 +23,6 @@ public class SIDMainActivity extends BaseSIDActivity implements
         setContentView(R.layout.sid_activity_main);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        menu.findItem(R.id.home).setVisible(true);
-        return true;
-    }
-
     private void resetJob() {
         jobType = -1;
         mUseMultipleEnroll = false;
@@ -132,7 +125,6 @@ public class SIDMainActivity extends BaseSIDActivity implements
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
-
 
     private void enrolFirstDialog() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
