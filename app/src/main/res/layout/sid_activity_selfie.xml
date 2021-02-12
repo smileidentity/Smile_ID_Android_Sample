@@ -1,84 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGrey"
     tools:context=".SIDSelfieActivity">
 
-    <!--Shows camera preview-->
-
-
     <com.smileidentity.libsmileid.core.CameraSourcePreview
-        android:id="@+id/previewCamera"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:paddingBottom="80dp"
-        app:captured_progress_state_color="@color/arc_color_trans_60per"
-        app:capturing_progress_state_color="@color/arc_color_trans_80per"
-        app:overlay_height="300dp"
-        app:overlay_width="250dp"
-        app:progress_width="15dp" />
+        xmlns:camera="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cspCamera"
+        android:layout_width="wrap_content"
+        camera:layout_constraintStart_toStartOf="parent"
+        camera:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        camera:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white_color"
+        camera:overlay_height="360dp"
+        camera:overlay_width="240dp"
+        camera:captured_progress_state_color="@color/colorPrimary"
+        camera:capturing_progress_state_color="@color/colorAccent"
+        camera:progress_width="15dp" />
 
     <TextView
-        android:id="@+id/prompt_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="34dp"
-        android:gravity="center"
-        android:text="@string/default_toast_face_in_oval"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:id="@+id/tvPromptReposition"
+        style="@style/SelfieReposition"
+        app:layout_constraintBottom_toBottomOf="@id/cspCamera" />
 
-    <Button
-        android:id="@+id/capture_btn"
+    <TextView
+        android:id="@+id/tvCapture"
+        style="@style/BtnAction"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="83dp"
-        android:text="CAPTURE"
+        android:minWidth="120dp"
+        android:drawablePadding="12dp"
+        android:textStyle="bold"
+        android:minHeight="0dp"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:drawableLeft="@drawable/ic_capture"
+        android:onClick="captureSelfie"
+        android:text="@string/lbl_selfie_capture"
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <LinearLayout
-        android:id="@+id/multiple_selfie_container_ll"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSelfieBtnContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"
         tools:visibility="visible">
 
-        <Button
-            android:id="@+id/take_another_selfie_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Take Another Selfie" />
+        <TextView
+            android:id="@+id/tvRetakeSelfie"
+            style="@style/BtnAction"
+            app:layout_constraintWidth_percent="0.6"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_capture"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="takeAnotherSelfie"
+            android:text="@string/lbl_selfie_take_another_selfie" />
 
-        <Button
-            android:id="@+id/continue_with_id_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add user id information" />
+        <TextView
+            android:id="@+id/tvContinueWithId"
+            style="@style/BtnAction"
+            app:layout_constraintWidth_percent="0.6"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_id_number"
+            app:layout_constraintTop_toBottomOf="@id/tvRetakeSelfie"
+            android:onClick="continueSaveWithId"
+            android:text="@string/lbl_selfie_add_user_id_info" />
 
-        <Button
-            android:id="@+id/save_for_later_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save and auth later"
+        <TextView
+            android:id="@+id/tvSaveAuthLater"
+            style="@style/BtnAction"
+            app:layout_constraintWidth_percent="0.6"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_authentication"
+            app:layout_constraintTop_toBottomOf="@id/tvContinueWithId"
+            android:onClick="saveAndAuthLater"
+            android:text="@string/lbl_selfie_save_and_auth_later"
             android:visibility="gone" />
 
-        <Button
-            android:id="@+id/continue_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Continue to upload" />
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvContinue"
+            style="@style/BtnAction"
+            app:layout_constraintWidth_percent="0.6"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_upload_now"
+            app:layout_constraintTop_toBottomOf="@id/tvSaveAuthLater"
+            android:onClick="continueProcess"
+            android:text="@string/lbl_selfie_continue_to_upload" />
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

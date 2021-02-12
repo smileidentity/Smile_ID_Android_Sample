@@ -32,7 +32,6 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -42,7 +41,9 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SIDMainActivity">
+
+        <activity android:name=".SIDSplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -50,7 +51,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SIDSelfieActivity" />
+
+        <activity android:name=".SIDMainActivity"
+            android:label="@string/lbl_main_heading"  />
+
+        <activity android:name=".SIDSelfieActivity"
+            android:label="@string/lbl_selfie_heading" />
 
         <activity
             android:name=".SIDIDCardActivity"
@@ -64,13 +70,16 @@
             android:name=".SIDIDCardCaptureActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".SIDEnrollResultActivity"
+            android:label="@string/lbl_enroll_result_heading"
             android:screenOrientation="portrait" />
-        <activity android:name=".SIDAuthResultActivity" />
-        <activity android:name=".SIDSmileIDActivity" />
-        <activity android:name=".SIDIDValidationActivity" />
 
+        <activity android:name=".SIDAuthResultActivity" />
+
+        <activity android:name=".SIDIDValidationActivity"
+            android:label="Validation" />
 
         <meta-data
             android:name="android.support.VERSION"

@@ -75,7 +75,7 @@ public class SIDIDCardCaptureActivity extends AppCompatActivity implements Captu
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                mCaptureInfoTv.setText(R.string.tap_screen_to_capture);
+                mCaptureInfoTv.setText(R.string.lbl_capture_card_tap_screen_to_capture);
             }
 
             @Override
