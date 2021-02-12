@@ -52,6 +52,7 @@
     <string name="demo_enrolled_confidence_value">Confidence value %d%%</string>
     <string name="demo_enrolled_image_unusable">ENROLLED/REGISTER FAILED IMAGE UNUSABLE</string>
 
+
     <!--Auth-->
     <string name="demo_auth_successfully">VERIFIED SUCCESSFULLY</string>
     <string name="demo_provisionally_authed">PROVISIONAL VERIFICATION</string>
@@ -85,5 +86,12 @@
     <string name="tooFarMessage">Custom too far message</string>
     <string name="loadingMessage">Custom loading message</string>
     <string name="detectingFaceMessage">Custom detecting message</string>
-
+    <string name="enroll_id_card_smile_ui">Smile UI Demo Enroll ID Card</string>
+    <string name="enroll_smile_ui">Smile UI Enroll</string>
+    <string name="enroll_register">Register (Enroll)</string>
+    <string name="enroll_register_with_id_card">Register (Enroll) with id card</string>
+    <string name="enroll_register_with_id_number">Register (Enroll) with ID number</string>
+    <string name="lbl_smile_ui">Smile UI</string>
+    <string name="lbl_smile_ui_enroll_id_card">Smile UI ID Card Register (Enroll)</string>
+    <string name="lbl_smile_ui_enroll">Smile UI Register (Enroll)</string>
 </resources>
