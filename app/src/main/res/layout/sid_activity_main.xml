@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorGrey"
     android:orientation="vertical">
 
@@ -13,102 +12,127 @@
         android:paddingBottom="20dp">
 
         <TextView
+            android:id="@+id/tv_smile_ui"
+            style="@style/MainHeading"
+            android:text="@string/lbl_smile_ui"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_smile_ui_enroll_id_card"
+            style="@style/BtnAction"
+            android:drawableLeft="@drawable/ic_enroll"
+            android:onClick="smileUIIDCardRegister"
+            android:text="@string/lbl_smile_ui_enroll_id_card"
+            app:layout_constraintTop_toBottomOf="@id/tv_smile_ui" />
+
+        <TextView
+            android:id="@+id/tv_smile_ui_enroll"
+            style="@style/BtnAction"
+            android:drawableLeft="@drawable/ic_enroll"
+            android:onClick="smileUIRegister"
+            android:text="@string/lbl_smile_ui_enroll"
+            app:layout_constraintTop_toBottomOf="@id/tv_smile_ui_enroll_id_card" />
+
+
+        <TextView
             android:id="@+id/tvEnrollHeading"
             style="@style/MainHeading"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/lbl_heading_enrollment" />
+            android:text="@string/lbl_heading_enrollment"
+            app:layout_constraintTop_toBottomOf="@id/tv_smile_ui_enroll" />
+
 
         <TextView
             android:id="@+id/tvEnroll"
             style="@style/BtnAction"
-            android:onClick="enroll"
             android:drawableLeft="@drawable/ic_enroll"
-            app:layout_constraintTop_toBottomOf="@id/tvEnrollHeading"
-            android:text="@string/lbl_enroll" />
+            android:onClick="enroll"
+            android:text="@string/lbl_enroll"
+            app:layout_constraintTop_toBottomOf="@id/tvEnrollHeading" />
 
         <TextView
             android:id="@+id/tvEnrollWithIdNo"
             style="@style/BtnAction"
-            android:onClick="enrollWithIdNo"
             android:drawableLeft="@drawable/ic_id_number"
-            app:layout_constraintTop_toBottomOf="@id/tvEnroll"
-            android:text="@string/lbl_enroll_with_id_number" />
+            android:onClick="enrollWithIdNo"
+            android:text="@string/lbl_enroll_with_id_number"
+            app:layout_constraintTop_toBottomOf="@id/tvEnroll" />
 
         <TextView
             android:id="@+id/tvEnrollWithIdCard"
             style="@style/BtnAction"
-            android:onClick="enrollWithIdCard"
             android:drawableLeft="@drawable/ic_id_card"
-            app:layout_constraintTop_toBottomOf="@id/tvEnrollWithIdNo"
-            android:text="@string/lbl_enroll_with_id_card" />
+            android:onClick="enrollWithIdCard"
+            android:text="@string/lbl_enroll_with_id_card"
+            app:layout_constraintTop_toBottomOf="@id/tvEnrollWithIdNo" />
 
         <TextView
             android:id="@+id/tvUpdateHeading"
             style="@style/MainHeading"
-            app:layout_constraintTop_toBottomOf="@id/tvEnrollWithIdCard"
-            android:text="@string/lbl_heading_update" />
+            android:text="@string/lbl_heading_update"
+            app:layout_constraintTop_toBottomOf="@id/tvEnrollWithIdCard" />
 
         <TextView
             android:id="@+id/tvReEnroll"
             style="@style/BtnAction"
-            android:onClick="reEnroll"
             android:drawableLeft="@drawable/ic_re_enroll"
-            app:layout_constraintTop_toBottomOf="@id/tvUpdateHeading"
-            android:text="@string/re_enroll_re_register_user" />
+            android:onClick="reEnroll"
+            android:text="@string/re_enroll_re_register_user"
+            app:layout_constraintTop_toBottomOf="@id/tvUpdateHeading" />
 
         <TextView
             android:id="@+id/tvReEnrollWithId"
             style="@style/BtnAction"
-            android:onClick="reEnrollWithId"
             android:drawableLeft="@drawable/ic_re_enroll_2"
-            app:layout_constraintTop_toBottomOf="@id/tvReEnroll"
-            android:text="@string/re_enroll_re_register_user_with_id" />
+            android:onClick="reEnrollWithId"
+            android:text="@string/re_enroll_re_register_user_with_id"
+            app:layout_constraintTop_toBottomOf="@id/tvReEnroll" />
 
         <TextView
             android:id="@+id/tvUpdateEnrolledImage"
             style="@style/BtnAction"
-            android:onClick="updateUseImage"
             android:drawableLeft="@drawable/ic_update_image"
-            app:layout_constraintTop_toBottomOf="@id/tvReEnrollWithId"
-            android:text="@string/update_enrolled_register_image" />
+            android:onClick="updateUseImage"
+            android:text="@string/update_enrolled_register_image"
+            app:layout_constraintTop_toBottomOf="@id/tvReEnrollWithId" />
 
         <TextView
             android:id="@+id/tvMultipleEnroll"
             style="@style/BtnAction"
-            android:onClick="multipleEnroll"
             android:drawableLeft="@drawable/ic_account_box"
-            app:layout_constraintTop_toBottomOf="@id/tvUpdateEnrolledImage"
-            android:text="@string/agent_mode_implementation_example" />
+            android:onClick="multipleEnroll"
+            android:text="@string/agent_mode_implementation_example"
+            app:layout_constraintTop_toBottomOf="@id/tvUpdateEnrolledImage" />
 
         <TextView
             android:id="@+id/tvAuthHeading"
             style="@style/MainHeading"
-            app:layout_constraintTop_toBottomOf="@id/tvMultipleEnroll"
-            android:text="@string/lbl_heading_authenticate" />
+            android:text="@string/lbl_heading_authenticate"
+            app:layout_constraintTop_toBottomOf="@id/tvMultipleEnroll" />
 
         <TextView
             android:id="@+id/tvIdValidation"
             style="@style/BtnAction"
-            android:onClick="validateId"
             android:drawableLeft="@drawable/ic_id_validation"
-            app:layout_constraintTop_toBottomOf="@id/tvAuthHeading"
-            android:text="@string/id_validation" />
+            android:onClick="validateId"
+            android:text="@string/id_validation"
+            app:layout_constraintTop_toBottomOf="@id/tvAuthHeading" />
 
         <TextView
             android:id="@+id/tvAuthenticate"
             style="@style/BtnAction"
-            android:onClick="authenticate"
             android:drawableLeft="@drawable/ic_auth"
-            app:layout_constraintTop_toBottomOf="@id/tvIdValidation"
-            android:text="@string/auth" />
+            android:onClick="authenticate"
+            android:text="@string/auth"
+            app:layout_constraintTop_toBottomOf="@id/tvIdValidation" />
 
         <TextView
             android:id="@+id/tvAuthenticateWithSavedData"
             style="@style/BtnAction"
-            android:onClick="authenticateWithSavedData"
             android:drawableLeft="@drawable/ic_auth_with_saved_data"
-            app:layout_constraintTop_toBottomOf="@id/tvAuthenticate"
-            android:text="@string/auth_using_saved_data" />
+            android:onClick="authenticateWithSavedData"
+            android:text="@string/auth_using_saved_data"
+            app:layout_constraintTop_toBottomOf="@id/tvAuthenticate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
