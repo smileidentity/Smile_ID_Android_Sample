@@ -12,7 +12,11 @@ android {
             keyPassword RELEASE_KEY_PASSWORD
         }
     }
+<<<<<<< HEAD
     compileSdkVersion 30
+=======
+    compileSdkVersion 29
+>>>>>>> 5b39500... Moved signing keys
     ndkVersion '21.3.6528147'
     defaultConfig {
         applicationId "com.demo.smileid.sid_sdk_3_0"
@@ -21,6 +25,10 @@ android {
         versionCode 1
         versionName "3.5.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+<<<<<<< HEAD
+=======
+        signingConfig signingConfigs.config
+>>>>>>> 5b39500... Moved signing keys
         multiDexEnabled true
     }
     buildTypes {
