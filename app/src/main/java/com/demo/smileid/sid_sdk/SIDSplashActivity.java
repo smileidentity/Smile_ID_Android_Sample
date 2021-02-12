@@ -23,9 +23,11 @@ public class SIDSplashActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvVersion)).setText(String.format(getString(
                 R.string.lbl_version_number), Version.name(), BuildConfig.VERSION_NAME));
+
+        moveToHomeScreen();
     }
 
-    public void logoClicked(View view) {
+    private void moveToHomeScreen() {
         if (!playServiceAvailable()) {
             Toast.makeText(this, R.string.lbl_play_service_error, Toast.LENGTH_SHORT).show();
             return;
