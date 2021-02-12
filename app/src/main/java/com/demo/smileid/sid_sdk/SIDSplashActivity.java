@@ -2,6 +2,7 @@ package com.demo.smileid.sid_sdk;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -33,7 +34,14 @@ public class SIDSplashActivity extends AppCompatActivity {
             return;
         }
 
-        startActivity(new Intent(this, SIDMainActivity.class));
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SIDSplashActivity.this, SIDMainActivity.class));
+            }
+        };
+
+        new Handler().postDelayed(runnable, 1000);
     }
 
     private boolean playServiceAvailable() {
