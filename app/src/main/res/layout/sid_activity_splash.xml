@@ -10,8 +10,7 @@
 
     <ImageView
         android:id="@+id/ivSelfieLogo"
-        style="@style/SplashSelfieLogo"
-        android:onClick="logoClicked" />
+        style="@style/SplashSelfieLogo" />
 
     <TextView
         android:id="@+id/tvSubLabel"
