@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-//import com.smileidentity.libsmileid.utils.Version;
+
+import com.smileidentity.libsmileid.utils.Version;
+
 
 public class SIDSplashActivity extends AppCompatActivity {
 
@@ -20,8 +23,8 @@ public class SIDSplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.sid_activity_splash);
 
-//        ((TextView) findViewById(R.id.tvVersion)).setText(String.format(getString(
-//                R.string.lbl_version_number), Version.name(), BuildConfig.VERSION_NAME));
+        ((TextView) findViewById(R.id.tvVersion)).setText(String.format(getString(
+                R.string.lbl_version_number), Version.name(), BuildConfig.VERSION_NAME));
     }
 
     public void logoClicked(View view) {
