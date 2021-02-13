@@ -17,7 +17,6 @@
             android:text="@string/lbl_smile_ui"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tv_smile_ui_enroll_id_card"
             style="@style/BtnAction"
@@ -34,13 +33,11 @@
             android:text="@string/lbl_smile_ui_enroll"
             app:layout_constraintTop_toBottomOf="@id/tv_smile_ui_enroll_id_card" />
 
-
         <TextView
             android:id="@+id/tvEnrollHeading"
             style="@style/MainHeading"
             android:text="@string/lbl_heading_enrollment"
             app:layout_constraintTop_toBottomOf="@id/tv_smile_ui_enroll" />
-
 
         <TextView
             android:id="@+id/tvEnroll"
