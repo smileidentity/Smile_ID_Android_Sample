@@ -21,7 +21,6 @@ android {
         versionCode 1
         versionName "3.5.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
         multiDexEnabled true
     }
     buildTypes {

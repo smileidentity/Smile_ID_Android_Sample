@@ -6,18 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-
 import com.demo.smileid.sid_sdk.sidNet.InternetStateBroadCastReceiver;
 import com.smileid.smileidui.CaptureType;
 import com.smileid.smileidui.SIDCaptureManager;
-
 import static com.demo.smileid.sid_sdk.SIDStringExtras.EXTRA_TAG_PREFERENCES_AUTH_TAGS;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_USER_ID;
 import static com.smileid.smileidui.IntentHelper.SMILE_REQUEST_RESULT_TAG;
@@ -174,10 +169,11 @@ public class SIDMainActivity extends BaseSIDActivity implements
     private boolean hasOfflineTags() {
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         String tags = sharedPreferences.getString(EXTRA_TAG_PREFERENCES_AUTH_TAGS, null);
+
         if (tags != null) {
             return tags.split(",").length > 0;
-
         }
+
         return false;
     }
 
@@ -193,23 +189,32 @@ public class SIDMainActivity extends BaseSIDActivity implements
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == SMILE_SELFIE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Intent intent = new Intent(this, SIDEnrollResultActivity.class);
-                intent.putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 4);
-                intent.putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
-                startActivity(intent);
+                startActivity(
+                    new Intent(this, SIDEnrollResultActivity.class) {
+                        {
+                            putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 4);
+                            putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                        }
+                    }
+                );
             } else {
                 Toast.makeText(this, "Oops Smile ID UI Selfie did not return a success", Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == SMILE_ID_CARD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Intent intent = new Intent(this, SIDEnrollResultActivity.class);
-                intent.putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 1);
-                intent.putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
-                startActivity(intent);
+                startActivity(
+                    new Intent(this, SIDEnrollResultActivity.class) {
+                        {
+                            putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 1);
+                            putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                        }
+                    }
+                );
             } else {
                 Toast.makeText(this, "Oops Smile ID UI Selfie and ID Card did not return a success", Toast.LENGTH_LONG).show();
             }
