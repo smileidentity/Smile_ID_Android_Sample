@@ -57,7 +57,7 @@ public class BaseSIDActivity extends AppCompatActivity {
         }
     }
 
-    private boolean permissionGranted(String... permissions) {
+    protected boolean permissionGranted(String... permissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
