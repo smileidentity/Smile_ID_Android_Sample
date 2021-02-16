@@ -25,6 +25,7 @@
     </style>
 
     <style name="SpinnerDropDownItemStyle">
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/darkerGray</item>
     </style>
 
@@ -95,6 +96,30 @@
         <item name="android:layout_marginBottom">16dp</item>
     </style>
 
+    <style name="EnrollResultProgressBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <style name="EnrollResultSwitch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:text">@string/lbl_enroll_result_internet_recovered</item>
+        <item name="android:textColor">@color/darkerGray</item>
+        <item name="android:shadowColor">@color/darkerGray</item>
+        <item name="android:trackTint">@color/darkerGray</item>
+        <item name="android:switchPadding">8dp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
     <style name="EnrollResultCountryPicker">
         <item name="android:layout_width">0dp</item>
         <item name="layout_constraintWidth_percent">0.6</item>
@@ -111,9 +136,8 @@
     <style name="EnrollResultIdTypeSpinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
+        <item name="android:visibility">gone</item>
         <item name="android:layout_marginTop">8dp</item>
-        <item name="paddingStart">4dp</item>
-        <item name="paddingEnd">4dp</item>
         <item name="android:ems">10</item>
         <item name="android:textColor">@color/darkerGray</item>
         <item name="android:textColorHint">@color/darkerGray</item>
