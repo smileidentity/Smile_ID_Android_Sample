@@ -136,6 +136,7 @@
     <style name="EnrollResultIdTypeSpinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
+        <item name="android:visibility">gone</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:ems">10</item>
         <item name="android:textColor">@color/darkerGray</item>
