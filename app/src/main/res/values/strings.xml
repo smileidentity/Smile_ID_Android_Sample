@@ -91,7 +91,7 @@
     <string name="enroll_register">Register (Enroll)</string>
     <string name="enroll_register_with_id_card">Register (Enroll) with id card</string>
     <string name="enroll_register_with_id_number">Register (Enroll) with ID number</string>
-    <string name="lbl_smile_ui">Smile UI</string>
+    <string name="lbl_smile_ui">SMILE UI</string>
     <string name="lbl_smile_ui_enroll_id_card">Smile UI ID Card Register (Enroll)</string>
     <string name="lbl_smile_ui_enroll">Smile UI Register (Enroll)</string>
 </resources>
