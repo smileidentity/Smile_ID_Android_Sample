@@ -6,7 +6,7 @@ apply plugin: 'com.smileidentity.smile-id-android'
 android {
     signingConfigs {
         config {
-            storeFile file("config/smileId_keystore.keystore")
+            storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD
             keyAlias RELEASE_KEY_ALIAS
             keyPassword RELEASE_KEY_PASSWORD
@@ -58,7 +58,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
 //    implementation 'com.smileidentity:smile-id-sdk:7.1.4-SNAPSHOT'// use this if you do not intend to use smile-id-ui
-    implementation 'com.smileidentity:smile-id-ui:0.0.4-SNAPSHOT'
+    implementation 'com.smileidentity:smile-id-ui:0.0.5-SNAPSHOT'
     implementation project(':ccp')
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
     implementation 'com.google.firebase:firebase-analytics'
@@ -66,6 +66,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     // DEV DEPENDANCIES
+
 //    implementation project(':smile_detect_library-release')
 //    implementation project(':smile-id-ui')
 }
