@@ -53,6 +53,13 @@ public class IdTypeUtil {
                         .addCard(IdType.OTHER_ID_TYPE.replace("_", " "))
                         .create();
 
+            case "South Africa":
+                return new IdCard.For("South Africa")
+                        .setCountryCode("27")
+                        .addCard(IdType.NATIONAL_ID.replace("_", " "))
+                        .addCard(IdType.OTHER_ID_TYPE.replace("_", " "))
+                        .create();
+
             default:
                 return new IdCard.For(Country.STATELESS)
                         .addCard(IdType.OTHER_ID_TYPE.replace("_", " "))
