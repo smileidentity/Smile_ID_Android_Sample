@@ -65,7 +65,7 @@
     <string name="demo_update_image_success">UPDATED IMAGE SUCCESSFULLY</string>
     <string name="demo_update_photo_provisional">PROVISIONAL UPDATED IMAGE</string>
     <string name="re_enroll_re_register_user_with_id">Re-register (Re-Enroll) User With ID</string>
-    <string name="re_enroll_re_register_user">Re register (Re-Enroll) User</string>
+    <string name="re_enroll_re_register_user">Re-register (Re-Enroll) User</string>
     <string name="enroll_register_257">Register (Enroll) 257</string>
     <string name="enroll_register_260">Register (Enroll) 260</string>
     <string name="update_enrolled_register_image">Update Registered (Enrolled) Image</string>
