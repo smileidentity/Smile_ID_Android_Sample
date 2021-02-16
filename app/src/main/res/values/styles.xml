@@ -24,9 +24,9 @@
         <item name="android:textColor">@color/darkerGray</item>
     </style>
 
-    <style name="SpinnerDropDownItemStyle">
-        <item name="android:textSize">12sp</item>
+    <style name="SpinnerDropDownItemStyle" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
         <item name="android:textColor">@color/darkerGray</item>
+        <item name="android:padding">4dp</item>
     </style>
 
     <style name="PopupStyle" parent="Widget.AppCompat.PopupWindow">
@@ -117,7 +117,7 @@
         <item name="android:shadowColor">@color/darkerGray</item>
         <item name="android:trackTint">@color/darkerGray</item>
         <item name="android:switchPadding">8dp</item>
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="EnrollResultCountryPicker">
@@ -136,7 +136,6 @@
     <style name="EnrollResultIdTypeSpinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:visibility">gone</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:ems">10</item>
         <item name="android:textColor">@color/darkerGray</item>
