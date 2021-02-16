@@ -104,7 +104,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
             View.VISIBLE : View.GONE);
 
         if (mContinueWithIdInfo) {
-            mSAutoUpload.setVisibility(View.GONE);
+//            mSAutoUpload.setVisibility(View.GONE);
             findViewById(R.id.tvEnrollUploadNow).setVisibility(View.GONE);
         }
 
@@ -127,7 +127,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
         getSelectedCountryName();
         populateIdCard();
 
-        mSAutoUpload.setVisibility(mMultipleEnroll && !mContinueWithIdInfo ? View.VISIBLE : View.GONE);
+//        mSAutoUpload.setVisibility(mMultipleEnroll && !mContinueWithIdInfo ? View.VISIBLE : View.GONE);
         mSharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         mInternetStateBR = new InternetStateBroadCastReceiver();
         mInternetStateBR.setOnConnectionReceivedListener(this);

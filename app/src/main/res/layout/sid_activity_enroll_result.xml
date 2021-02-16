@@ -9,13 +9,7 @@
 
     <ProgressBar
         android:id="@+id/pbLoading"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        style="@style/EnrollResultProgressBar"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -25,22 +19,17 @@
 
         <Switch
             android:id="@+id/sAutoUpload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="67dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="@string/lbl_enroll_result_internet_recovered"
-            android:visibility="gone" />
+            style="@style/EnrollResultSwitch" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clNoCardLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sAutoUpload"
             app:layout_goneMarginTop="10dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:visibility="gone">
 
             <TextView
