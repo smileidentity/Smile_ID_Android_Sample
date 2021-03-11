@@ -44,6 +44,7 @@ android {
     packagingOptions {
         exclude 'META-INF/androidx.*'
         exclude 'androidx.*'
+        exclude 'META-INF/DEPENDENCIES'
     }
 }
 
@@ -57,16 +58,17 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-//    implementation 'com.smileidentity:smile-id-sdk:7.1.4-SNAPSHOT'// use this if you do not intend to use smile-id-ui
-    implementation 'com.smileidentity:smile-id-ui:0.0.5-SNAPSHOT'
+//    implementation 'com.smileidentity:smile-id-sdk:7.1.2'// use this if you do not intend to use smile-id-ui
+//    implementation 'com.smileidentity:smile-id-ui:0.0.5-SNAPSHOT'
     implementation project(':ccp')
+    implementation project(':smile-identity-simplified-java')
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation "androidx.multidex:multidex:2.0.1"
 
-    // DEV DEPENDANCIES
+    // DEV DEP ENDANCIES
 
-//    implementation project(':smile_detect_library-release')
-//    implementation project(':smile-id-ui')
+    implementation project(':smile_detect_library-release')
+    implementation project(':smile-id-ui')
 }

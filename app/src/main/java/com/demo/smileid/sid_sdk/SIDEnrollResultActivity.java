@@ -62,7 +62,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
     private CountryCodePicker mCcpCountryPicker;
     private Spinner mSIdType;
     private boolean mHasId = false, mReEnrollUser = false, mHasNoIdCard, mMultipleEnroll,
-        mContinueWithIdInfo;
+            mContinueWithIdInfo;
     private int mEnrollType;
     private String mSelectedCountryName = "", mSelectedIdCard, mCurrentTag;
     private SIDNetworkRequest mSIDNetworkRequest;
@@ -101,7 +101,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
         });
 
         findViewById(R.id.clNoCardLayout).setVisibility((mHasNoIdCard || mContinueWithIdInfo) ?
-            View.VISIBLE : View.GONE);
+                View.VISIBLE : View.GONE);
 
         if (mContinueWithIdInfo) {
             mSAutoUpload.setVisibility(View.GONE);
@@ -109,7 +109,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
         }
 
         findViewById(R.id.clMultipleEnrollActions).setVisibility((mMultipleEnroll) ? View.VISIBLE :
-            View.GONE);
+                View.GONE);
 
         mSIdType = findViewById(R.id.spIdType);
         mSIdType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -160,12 +160,12 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
                 selectedDate.set(year, monthOfYear, dayOfMonth);
 
                 ((TextInputLayout) findViewById(R.id.tiDOB)).getEditText().setText(
-                    new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(
-                        selectedDate.getTime()));
+                        new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(
+                                selectedDate.getTime()));
             }
 
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(
-            Calendar.DAY_OF_MONTH)).show();
+                Calendar.DAY_OF_MONTH)).show();
     }
 
     public void skipIdInfo(View view) {
@@ -191,7 +191,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
         SIDTagManager sidTagManager = SIDTagManager.getInstance(this);
         SIDMetadata metadata = new SIDMetadata();
         setUserIdInfo(metadata);
-        sidTagManager.saveConfig(mCurrentTag, mContinueWithIdInfo ? 1 : 4, SIDConfig.Mode.ENROLL, null, metadata, false, this);
+        sidTagManager.saveConfig(mCurrentTag, mContinueWithIdInfo ? 1 : 4, SIDConfig.Mode.ENROLL, null, metadata, this);
     }
 
     private boolean isIdInfoValid() {
@@ -244,7 +244,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
             //No internet connection so you can cache this job and
             // later use submitAll() to submit all offline jobs
 
-            SIDTagManager.getInstance(this).saveConfig(tag, sidConfig.getJobType(), sidConfig.getMode(), sidConfig.getGeoInformation(), sidConfig.getSIDMetadata(), sidConfig.isUseIdCard(), this);
+            SIDTagManager.getInstance(this).saveConfig(tag, sidConfig.getJobType(), sidConfig.getMode(), sidConfig.getGeoInformation(), sidConfig.getSIDMetadata(), this);
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
         }
     }
@@ -264,29 +264,16 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
 
         GeoInfos infos = SIDGeoInfos.getInstance().getGeoInformation();
 
-        int jobType = mHasNoIdCard ? 1 : mEnrollType;
         boolean useIdCard = !mHasNoIdCard && mHasId;
         SIDConfig.Builder builder;
 
-        if (metadata != null) {
-            builder = new SIDConfig.Builder(this)
-                    .setRetryOnfailurePolicy(getRetryOnFailurePolicy())
-                    .setMode(SIDConfig.Mode.ENROLL)
-                    .setSmileIdNetData(data)
-                    .setGeoInformation(infos)
-                    .setSIDMetadata(metadata)
-                    .setJobType(jobType)
-                    .useIdCard(useIdCard);
-
-        } else {
-            builder = new SIDConfig.Builder(this)
-                    .setRetryOnfailurePolicy(getRetryOnFailurePolicy())
-                    .setMode(SIDConfig.Mode.ENROLL)
-                    .setSmileIdNetData(data)
-                    .setGeoInformation(infos)
-                    .setJobType(jobType)
-                    .useIdCard(useIdCard);
-        }
+        builder = new SIDConfig.Builder(this)
+                .setRetryOnfailurePolicy(getRetryOnFailurePolicy())
+                .setMode(SIDConfig.Mode.ENROLL)
+                .setSmileIdNetData(data)
+                .setGeoInformation(infos)
+                .setSIDMetadata(metadata != null ? metadata : new SIDMetadata())
+                .setJobType(mEnrollType);
 
         mConfig = builder.build(mCurrentTag);
         return mConfig;
@@ -399,7 +386,7 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
 
         if (!TextUtils.isEmpty(response.getResultText())) {
             stringBuilder.append("Result Text : ").append(response.getResultText())
-                .append(System.getProperty("line.separator"));
+                    .append(System.getProperty("line.separator"));
         }
 
         if (response.getConfidenceValue() > 0) {

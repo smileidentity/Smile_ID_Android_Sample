@@ -6,7 +6,9 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.smileidentity.libsmileid.utils.Version;
 
 public class SIDSplashActivity extends AppCompatActivity {

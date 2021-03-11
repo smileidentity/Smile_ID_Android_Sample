@@ -32,6 +32,7 @@ import static com.demo.smileid.sid_sdk.SIDStringExtras.EXTRA_TAG_PREFERENCES_AUT
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_JOB_ID;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_USER_ID;
 import static com.smileid.smileidui.IntentHelper.SMILE_REQUEST_RESULT_TAG;
+//import static com.smileid.smileidui.IntentHelper.SMILE_REQUEST_RESULT_TAG;
 
 public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickListener,
         SIDNetworkRequest.OnCompleteListener,
@@ -283,8 +284,7 @@ public class SIDSmileIDActivity extends BaseSIDActivity implements View.OnClickL
                 .setGeoInformation(null)
                 .setSIDMetadata(metadata)
                 .setIsJobStatusQuery(true)
-                .setJobType(1)
-                .useIdCard(false);
+                .setJobType(1);
         SIDConfig mConfig = builder.build();
 
         SIDNetworkRequest sidNetworkRequest = new SIDNetworkRequest(this);

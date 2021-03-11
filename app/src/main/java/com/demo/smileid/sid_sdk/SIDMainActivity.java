@@ -64,26 +64,31 @@ public class SIDMainActivity extends BaseSIDActivity implements
 
     public void enroll(View view) {
         resetJob();
+        jobType = 4;
         startSelfieCapture(true, false);
     }
 
     public void enrollWithIdNo(View view) {
         resetJob();
+        jobType = 1;
         startSelfieCapture(true, true, false, false, true);
     }
 
     public void enrollWithIdCard(View view) {
         resetJob();
+        jobType = 1;
         startSelfieCapture(true);
     }
 
     public void reEnroll(View view) {
         resetJob();
+        jobType = 4;
         startSelfieCapture(true, false, false, true);
     }
 
     public void reEnrollWithId(View view) {
         resetJob();
+        jobType = 1;
         startSelfieCapture(true, true, false, true);
     }
 
@@ -101,11 +106,13 @@ public class SIDMainActivity extends BaseSIDActivity implements
 
     public void validateId(View view) {
         resetJob();
+        jobType = 5;
         startActivity(new Intent(this, SIDIDValidationActivity.class));
     }
 
     public void authenticate(View view) {
         resetJob();
+        jobType = 2;
 
         if (!hasSavedUser()) {
             enrolFirstDialog();
@@ -213,12 +220,12 @@ public class SIDMainActivity extends BaseSIDActivity implements
         if (requestCode == SMILE_SELFIE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 startActivity(
-                    new Intent(this, SIDEnrollResultActivity.class) {
-                        {
-                            putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 4);
-                            putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                        new Intent(this, SIDEnrollResultActivity.class) {
+                            {
+                                putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 4);
+                                putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                            }
                         }
-                    }
                 );
             } else {
                 Toast.makeText(this, "Oops Smile ID UI Selfie did not return a success", Toast.LENGTH_LONG).show();
@@ -226,12 +233,12 @@ public class SIDMainActivity extends BaseSIDActivity implements
         } else if (requestCode == SMILE_ID_CARD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 startActivity(
-                    new Intent(this, SIDEnrollResultActivity.class) {
-                        {
-                            putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 1);
-                            putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                        new Intent(this, SIDEnrollResultActivity.class) {
+                            {
+                                putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 1);
+                                putExtra(SIDStringExtras.EXTRA_TAG_FOR_ADD_ID_INFO, data.getStringExtra(SMILE_REQUEST_RESULT_TAG));
+                            }
                         }
-                    }
                 );
             } else {
                 Toast.makeText(this, "Oops Smile ID UI Selfie and ID Card did not return a success", Toast.LENGTH_LONG).show();
