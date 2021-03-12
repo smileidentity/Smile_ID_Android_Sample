@@ -4,6 +4,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.smileidentity.smile-id-android'
 
 android {
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
     signingConfigs {
         config {
             storeFile file(RELEASE_STORE_FILE)

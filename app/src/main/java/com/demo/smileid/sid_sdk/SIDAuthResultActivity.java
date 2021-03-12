@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.demo.smileid.sid_sdk.geoloc.SIDGeoInfos;
 import com.demo.smileid.sid_sdk.sidNet.SIDNetworkingUtils;
-import com.smileidentity.libsmileid.core.RetryOnFailurePolicy;
 import com.smileidentity.libsmileid.core.SIDConfig;
 import com.smileidentity.libsmileid.core.SIDNetworkRequest;
 import com.smileidentity.libsmileid.core.SIDResponse;
@@ -32,7 +31,6 @@ import com.smileidentity.libsmileid.model.SIDNetData;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.TimeUnit;
 
 import static com.demo.smileid.sid_sdk.SIDStringExtras.EXTRA_TAG_PREFERENCES_AUTH_TAGS;
 
@@ -126,8 +124,7 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
         }
 
         SIDConfig.Builder builder = new SIDConfig.Builder(this);
-        builder.setRetryOnfailurePolicy(getRetryOnFailurePolicy())
-                .setSmileIdNetData(data)
+        builder.setSmileIdNetData(data)
                 .setGeoInformation(geoInfos)
                 .setJobType(mJobType)
                 .setSIDMetadata(metadata)
@@ -147,15 +144,6 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
     @NonNull
     private SIDConfig createConfig() {
         return createConfig(new SIDMetadata());
-    }
-
-    private RetryOnFailurePolicy getRetryOnFailurePolicy() {
-        return new RetryOnFailurePolicy() {
-            {
-                setRetryCount(15);
-                setRetryTimeout(TimeUnit.SECONDS.toMillis(15));
-            }
-        };
     }
 
     private void setPartnerParamsForReEnroll(SIDMetadata metadata) {

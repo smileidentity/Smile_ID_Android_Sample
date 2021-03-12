@@ -256,7 +256,7 @@ public class SIDSelfieActivity extends AppCompatActivity implements OnFaceStateC
 
     private SelfieCaptureConfig getCaptureConfig() {
         return new SelfieCaptureConfig.Builder(this)
-                .setCameraType(mMultipleEnroll ? SelfieCaptureConfig.BACK_CAMERA : SelfieCaptureConfig.FRONT_CAMERA)
+                .setCameraType(/*mMultipleEnroll ? SelfieCaptureConfig.BACK_CAMERA : */SelfieCaptureConfig.FRONT_CAMERA)
                 .setPreview((CameraSourcePreview) findViewById(R.id.cspCamera))
                 .setManualSelfieCapture((mMultipleEnroll || mUseOffLineAuth))
                 .setFlashScreenOnShutter(!mMultipleEnroll && !mUseOffLineAuth)

@@ -27,7 +27,6 @@ import com.demo.smileid.sid_sdk.sidNet.SIDNetworkingUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
-import com.smileidentity.libsmileid.core.RetryOnFailurePolicy;
 import com.smileidentity.libsmileid.core.SIDConfig;
 import com.smileidentity.libsmileid.core.SIDNetworkRequest;
 import com.smileidentity.libsmileid.core.SIDResponse;
@@ -45,7 +44,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_JOB_ID;
 import static com.demo.smileid.sid_sdk.SIDStringExtras.SHARED_PREF_USER_ID;
@@ -264,11 +262,9 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
 
         GeoInfos infos = SIDGeoInfos.getInstance().getGeoInformation();
 
-        boolean useIdCard = !mHasNoIdCard && mHasId;
         SIDConfig.Builder builder;
 
         builder = new SIDConfig.Builder(this)
-                .setRetryOnfailurePolicy(getRetryOnFailurePolicy())
                 .setMode(SIDConfig.Mode.ENROLL)
                 .setSmileIdNetData(data)
                 .setGeoInformation(infos)
@@ -279,14 +275,6 @@ public class SIDEnrollResultActivity extends BaseSIDActivity implements SIDNetwo
         return mConfig;
     }
 
-    private RetryOnFailurePolicy getRetryOnFailurePolicy() {
-        return new RetryOnFailurePolicy() {
-            {
-                setRetryCount(10);
-                setRetryTimeout(TimeUnit.SECONDS.toMillis(15));
-            }
-        };
-    }
 
     @Override
     public void onComplete() {

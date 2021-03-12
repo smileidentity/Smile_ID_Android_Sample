@@ -68,6 +68,7 @@
             android:drawableLeft="@drawable/ic_id_number"
             android:onClick="continueSaveWithId"
             android:text="@string/lbl_selfie_add_user_id_info"
+            android:visibility="gone"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvRetakeSelfie"
             app:layout_constraintWidth_percent="0.6" />

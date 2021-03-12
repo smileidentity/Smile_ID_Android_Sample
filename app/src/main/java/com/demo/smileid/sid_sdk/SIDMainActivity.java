@@ -101,6 +101,7 @@ public class SIDMainActivity extends BaseSIDActivity implements
     public void multipleEnroll(View view) {
         resetJob();
         mUseMultipleEnroll = true;
+        jobType = 4;
         startSelfieCapture(true, false);
     }
 
@@ -149,6 +150,7 @@ public class SIDMainActivity extends BaseSIDActivity implements
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(SIDMainActivity.this, SIDAuthResultActivity.class);
                         intent.putExtra(SIDStringExtras.EXTRA_TAG_OFFLINE_AUTH, true);
+                        intent.putExtra(SIDStringExtras.EXTRA_ENROLL_TYPE, 2);
                         startActivity(intent);
                     }
                 });
