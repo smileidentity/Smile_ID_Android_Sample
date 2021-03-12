@@ -12,11 +12,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.demo.smileid.sid_sdk.geoloc.SIDGeoInfos;
 import com.demo.smileid.sid_sdk.sidNet.SIDNetworkingUtils;
-import com.smileidentity.libsmileid.core.RetryOnFailurePolicy;
 import com.smileidentity.libsmileid.core.SIDConfig;
 import com.smileidentity.libsmileid.core.SIDNetworkRequest;
 import com.smileidentity.libsmileid.core.SIDResponse;
@@ -26,14 +27,15 @@ import com.smileidentity.libsmileid.model.GeoInfos;
 import com.smileidentity.libsmileid.model.PartnerParams;
 import com.smileidentity.libsmileid.model.SIDMetadata;
 import com.smileidentity.libsmileid.model.SIDNetData;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.TimeUnit;
+
 import static com.demo.smileid.sid_sdk.SIDStringExtras.EXTRA_TAG_PREFERENCES_AUTH_TAGS;
 
 public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetworkRequest.OnCompleteListener,
-    SIDNetworkRequest.OnUpdateListener, SIDNetworkRequest.OnErrorListener,
+        SIDNetworkRequest.OnUpdateListener, SIDNetworkRequest.OnErrorListener,
         SIDNetworkRequest.OnAuthenticatedListener {
 
     private SIDNetworkRequest mSINetworkRequest;
@@ -103,7 +105,7 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
         } else {
             //No internet connection so you can cache this job and
             // later use submitAll() to submit all offline jobs
-            SIDTagManager.getInstance(this).saveConfig(config.getSubmittedTag(), config.getJobType(), config.getMode(), config.getGeoInformation(), config.getSIDMetadata(), config.isUseIdCard(), this);
+            SIDTagManager.getInstance(this).saveConfig(config.getSubmittedTag(), config.getJobType(), config.getMode(), config.getGeoInformation(), config.getSIDMetadata(), this);
 
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
         }
@@ -111,21 +113,21 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
 
     @NonNull
     private SIDConfig createConfig(SIDMetadata metadata) {
-        SIDNetData data = new SIDNetData(this,SIDNetData.Environment.TEST);
+        SIDNetData data = new SIDNetData(this, SIDNetData.Environment.TEST);
         GeoInfos geoInfos = SIDGeoInfos.getInstance().getGeoInformation();
         //Uncomment to set user Provided partner Parameter
         //setPartnerParams();
-        if ((mJobType == 8) && !TextUtils.isEmpty(getSavedUserId())) {
+        if (!TextUtils.isEmpty(getSavedUserId())) {
             //USe the PartnerParams object to set the user id of the user to be reernolled.
             // Should be declared before the configuration is submitted
             setPartnerParamsForReEnroll(metadata);
         }
 
         SIDConfig.Builder builder = new SIDConfig.Builder(this);
-        builder.setRetryOnfailurePolicy(getRetryOnFailurePolicy())
-                .setSmileIdNetData(data)
+        builder.setSmileIdNetData(data)
                 .setGeoInformation(geoInfos)
                 .setJobType(mJobType)
+                .setSIDMetadata(metadata)
                 .setMode(SIDConfig.Mode.AUTHENTICATION);
 
         if (mUse258) {//Set the job type to 258 if user selected Auth 258 mode from the main screen
@@ -142,15 +144,6 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
     @NonNull
     private SIDConfig createConfig() {
         return createConfig(new SIDMetadata());
-    }
-
-    private RetryOnFailurePolicy getRetryOnFailurePolicy() {
-        return new RetryOnFailurePolicy() {
-            {
-                setRetryCount(15);
-                setRetryTimeout(TimeUnit.SECONDS.toMillis(15));
-            }
-        };
     }
 
     private void setPartnerParamsForReEnroll(SIDMetadata metadata) {
@@ -234,7 +227,7 @@ public class SIDAuthResultActivity extends AppCompatActivity implements SIDNetwo
 
         if (!TextUtils.isEmpty(response.getResultText())) {
             stringBuilder.append("Result Text : ")
-                .append(response.getResultText())
+                    .append(response.getResultText())
                     .append(System.getProperty("line.separator"));
         }
 

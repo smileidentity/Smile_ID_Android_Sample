@@ -18,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.demo.smileid.sid_sdk.sidNet.IdTypeUtil;
 import com.demo.smileid.sid_sdk.sidNet.Misc;
 import com.demo.smileid.sid_sdk.sidNet.SIDNetworkingUtils;
@@ -34,6 +36,7 @@ import com.smileidentity.libsmileid.model.SIDMetadata;
 import com.smileidentity.libsmileid.model.SIDNetData;
 import com.smileidentity.libsmileid.model.SIDUserIdInfo;
 import com.smileidentity.libsmileid.net.model.idValidation.IDValidationResponse;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +46,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class SIDIDValidationActivity extends AppCompatActivity implements
-    SIDNetworkRequest.OnCompleteListener, SIDNetworkRequest.OnIDValidationListener, SIDNetworkRequest.OnErrorListener {
+        SIDNetworkRequest.OnCompleteListener, SIDNetworkRequest.OnIDValidationListener, SIDNetworkRequest.OnErrorListener {
 
     private String mSelectedCountryName = "", mSelectedIdCard, mCurrentTag;
     private SIDNetworkRequest mSINetworkRequest;
@@ -174,12 +177,12 @@ public class SIDIDValidationActivity extends AppCompatActivity implements
                 selectedDate.set(year, monthOfYear, dayOfMonth);
 
                 ((TextInputLayout) findViewById(R.id.tiDOB)).getEditText().setText(
-                    new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(
-                        selectedDate.getTime()));
+                        new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(
+                                selectedDate.getTime()));
             }
 
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(
-            Calendar.DAY_OF_MONTH)).show();
+                Calendar.DAY_OF_MONTH)).show();
     }
 
     private void upload() {
@@ -203,7 +206,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements
     }
 
     private SIDConfig createConfig(String tag, SIDMetadata metadata) {
-        SIDNetData data = new SIDNetData(this,SIDNetData.Environment.TEST);
+        SIDNetData data = new SIDNetData(this, SIDNetData.Environment.TEST);
 
         SIDConfig.Builder builder = new SIDConfig.Builder(this)
                 .setRetryOnfailurePolicy(getRetryOnFailurePolicy())
@@ -211,8 +214,7 @@ public class SIDIDValidationActivity extends AppCompatActivity implements
                 .setSmileIdNetData(data)
                 .setGeoInformation(null)
                 .setSIDMetadata(metadata)
-                .setJobType(5)
-                .useIdCard(false);
+                .setJobType(5);
         mConfig = builder.build(getTag());
         return mConfig;
     }
